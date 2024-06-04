@@ -14,8 +14,12 @@ export class ApiService {
     return this.http.get(this.url + "/servicios?pagination[page]="+pages+"&pagination[pageSize]="+num+"&populate=*");
   }
 
+  getServicio(id:any){
+    return this.http.get(this.url+"/servicios/"+id);
+  }
+
   getPlanes () {
-    return this.http.get(this.url + "/planes");
+    return this.http.get(this.url + "/plans");
   }
 
   getPagos () {
@@ -24,6 +28,10 @@ export class ApiService {
 
   getDetalles () {
     return this.http.get(this.url + "/detalles");
+  }
+
+  getClientes () {
+    return this.http.get(this.url + "/users");
   }
 
   delServicio(id:any) {

@@ -99,4 +99,28 @@ export class HomePage implements OnInit {
       }
     });
   }
+
+  public alertButtons = [
+    {
+      text: 'Cancelar',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'Eliminar',
+      role: 'confirm',
+      handler: () => {
+        console.log('Alert confirmed');
+      },
+    },
+  ];
+
+  setResult(ev: any, service:any) {
+    console.log(`Dismissed with role: ${ev.detail.role}`);
+    if (ev.detail.role === 'confirm') {
+      this.eliminar(service.id)
+    }
+  }
 }
