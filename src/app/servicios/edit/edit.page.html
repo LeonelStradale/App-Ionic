@@ -1,26 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Editar</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
+  <ion-list *ngIf="servicio != ''">
     <ion-item>
-      <ion-input label="Dirección" labelPlacement="floating" placeholder="Dirección"></ion-input>
+      <ion-input [(ngModel)]="direccion" label="Dirección" labelPlacement="floating" placeholder="Dirección"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input label="Ciudad" labelPlacement="floating" placeholder="Ciudad"></ion-input>
+      <ion-input [(ngModel)]="ciudad" label="Ciudad" labelPlacement="floating" placeholder="Ciudad"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input label="Estado" labelPlacement="floating" placeholder="Estado"></ion-input>
+      <ion-input [(ngModel)]="estado" label="Estado" labelPlacement="floating" placeholder="Estado"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input label="C.P." labelPlacement="floating" placeholder="C.P."></ion-input>
+      <ion-input [(ngModel)]="cp" label="C.P." labelPlacement="floating" placeholder="C.P."></ion-input>
     </ion-item>
 
       <ion-item>
-        <ion-select placeholder="Selecciona un plan">
+        <ion-select multiple="false" value="{{ servicio.attributes.plan.data.id }}" placeholder="Selecciona un plan">
           <ion-select-option *ngFor="let plan of planes" value="{{ plan.id }}">
             {{ plan.attributes.nombre }}
           </ion-select-option>
@@ -28,19 +31,15 @@
       </ion-item>
 
       <ion-item>
-        <ion-select placeholder="Selecciona un cliente">
+        <ion-select multiple="false" value="{{ servicio.attributes.users_permissions_user.data.id }}" placeholder="Selecciona un cliente">
           <ion-select-option *ngFor="let cliente of clientes" value="{{ cliente.id }}">
             {{ cliente.name }}
           </ion-select-option>
         </ion-select>
       </ion-item>
 
-      <ion-button expand="block" shape="round">
+      <ion-button expand="block" shape="round" (click)="updateServicio()">
         Guardar
-      </ion-button>
-
-      <ion-button expand="block" shape="round" color="danger">
-        Cancelar
       </ion-button>
 
   </ion-list>
